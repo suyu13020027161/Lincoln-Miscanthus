@@ -71,7 +71,7 @@ def create_heat(pointnum, filepath, z_range, z_min):
                 break
             x, y, z, red, green, blue = struct.unpack(data_format, data)
             progress = (i / pointnum)*100
-            print(f"(x={x}, y={y}, z={z}) Color: (red={red}, green={green}, blue={blue})")
+            #print(f"(x={x}, y={y}, z={z}) Color: (red={red}, green={green}, blue={blue})")
             #print(data)
             normalized_height = (z - z_min) / z_range
             green = int((1 - normalized_height) * 255)
@@ -147,24 +147,19 @@ save_file_path = "/home/suyu/Miscanthus/heat_map.ply"
 
 
 pointnum = read_vertex_count(file_path)
-#maxz, minz = read_and_print_ply(pointnum, file_path)
-#print(maxz)
-#print(minz)
-#print(type(minz))
+maxz, minz = read_and_print_ply(pointnum, file_path)
+print(maxz)
+print(minz)
+print(type(minz))
 
 
 #z_min = np.min(vertices_z)
 #z_max = np.max(vertices_z)
+z_range = maxz - minz
 
+print(z_range)
+print(type(z_range))
 
-
-#z_range = maxz - minz
-
-#print(z_range)
-#print(type(z_range))
-
-z_range = 16
-minz = -29
 
 colordata = create_heat(pointnum, file_path, z_range, minz)
 
