@@ -68,7 +68,7 @@ csv_path = "/home/ysu/Miscanthus/test.csv"
 
 pointnum = read_vertex_count(file_path)
 maxz, minz = read_and_print_ply(pointnum, file_path, csv_path)    
-
+print("All done!")
 
 
 
