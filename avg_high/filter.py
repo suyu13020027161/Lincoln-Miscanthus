@@ -11,15 +11,11 @@ def create_pdal_pipeline(input_file, output_file, voxel_size):
             {
                 "type": "readers.ply",
                 "filename": input_file
-            },
+            }, 
             {
-                "type": "filters.voxelcenternearestneighbor",
-                "cell":f"{voxel_size}"
-            },
-            {
-                "type": "filters.range",
-                "limits": f"Z[{z_min_threshold}:{z_max_threshold}]"
-            },            
+                "type": "filters.decimation",
+                "step": 2
+            },      
             {
                 "type": "writers.ply",
                 "filename": output_file
@@ -27,6 +23,7 @@ def create_pdal_pipeline(input_file, output_file, voxel_size):
         ]
     }
     return json.dumps(pipeline)
+                     
 
 def run_pdal_pipeline(pipeline_json):
     """
@@ -42,13 +39,13 @@ def run_pdal_pipeline(pipeline_json):
 
 if __name__ == "__main__":
     # 定义输入和输出文件路径
-    input_ply_path = '/home/ysu/Miscanthus/2D/small.ply'
-    output_ply_path = '/home/ysu/Miscanthus/2D/filter.ply'
-    voxel_size = 0.1  # 定义体素大小
+    input_ply_path = '/home/ysu/Miscanthus/avg_high/Miscanthus.ply'
+    output_ply_path = '/home/ysu/Miscanthus/avg_high/Miscanthus2.ply'
+    voxel_size = 0.02  # 定义体素大小
     #底部，值越小越朝下（苏雨）
-    z_min_threshold = -18  
+    z_min_threshold = -999 
     #顶部，值越大越朝上(15)（苏雨）
-    z_max_threshold = -15
+    z_max_threshold = 999
 
     # 创建 PDAL pipeline JSON 配置
     pdal_pipeline_json = create_pdal_pipeline(input_ply_path, output_ply_path, voxel_size)

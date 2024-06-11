@@ -1,60 +1,22 @@
 #苏雨的读取打印ply文件程序
-import struct
+# 首先，定义PLY文件的路径
+ply_file_path = 'Miscanthus2.ply'
 
-def read_and_print_ply(pointnum, filepath, rza, rzb):
-    data_format = '<fffccc'
-    with open(filepath, 'rb') as file:
-        while True:
-            line = file.readline()
-            if b"end_header" in line:
-                break
-        byte_size = struct.calcsize(data_format)
-        i = 0
-        
-        while True:       
-            data = file.read(byte_size)                      
-            if not data:
-                break
-            x, y, z, red, green, blue = struct.unpack(data_format, data)
-            progress = (i / pointnum)*100
-            print(f"(x={x}, y={y}, z={z}) Color: (red={red}, green={green}, blue={blue})")
-            #print(data)
-            if rza > rzb:
-                if rzb <= z and z <= rza:
-                    print('!')
-            else:
-                if rza <= z and z <= rzb:
-                    print('!')             
-            
-            
-            pp = str(progress)
-            #print("\rProgress: " + pp + "%", end="         ")
-            i = i + 1
-            
-
-
-
-
-def read_vertex_count(filepath):
-    vertex_count = 0
-    with open(filepath, 'rb') as file:
-        while True:
-            line = file.readline()
-            if b"end_header" in line:
-                break
-            if b"element vertex" in line:
-                parts = line.split()
-                vertex_count = int(parts[2])  
-    return vertex_count 
-
-
-# 替换下面的路径为你的PLY文件路径
-file_path = "/home/ysu/Miscanthus/avg_high/Miscanthus_23_11_23_arbitrary.ply"
-
-rza = -27.21
-rzb = -27.19
-pointnum = read_vertex_count(file_path)
-read_and_print_ply(pointnum, file_path, rza, rzb)
-
-
+# 打开文件并读取数据
+with open(ply_file_path, 'r') as file:
+    # 读取整个文件到一个列表中
+    lines = file.readlines()
+# 找到end_header的位置，因为数据从这之后开始
+header_end_index = 0
+for i, line in enumerate(lines):
+    if "end_header" in line:
+        header_end_index = i + 1
+        break
+# 遍历文件中的顶点数据部分
+for line in lines[header_end_index:]:
+    parts = line.split()
+    if len(parts) < 3:
+        continue  # 如果数据行不完整，跳过这行
+    x, y, z = parts[:3]  # 只提取前三个元素，即XYZ坐标
+    print(f'X: {x}, Y: {y}, Z: {z}')
 

@@ -3,7 +3,6 @@ import struct
 import matplotlib.pyplot as plt
 from matplotlib.path import Path
 import math
-from plyfile import PlyData
 
 
 def read_and_print_ply(pointnum, filepath, polygons):
@@ -37,75 +36,84 @@ def read_and_print_ply(pointnum, filepath, polygons):
 
 
     
+    #打开文件并读取数据（苏雨）
+    with open(filepath, 'r') as file:
+        # 读取整个文件到一个列表中（苏雨）
+        lines = file.readlines()
+        # 找到end_header的位置，因为数据从这之后开始
+        header_end_index = 0
+        for i, line in enumerate(lines):
+            if "end_header" in line:
+                header_end_index = i + 1
+                break
+                
+              
+                        
+        # 遍历文件中的顶点数据部分
+        i = 0
+        for line in lines[header_end_index:]:
+            parts = line.split()
+            if len(parts) < 3:
+                continue  # 如果数据行不完整，跳过这行
+            x, y, z = parts[:3]  # 只提取前三个元素，即XYZ坐标
+            #print(f'X: {x}, Y: {y}, Z: {z}')        
 
-
-
-
-
-
-    ply = PlyData.read(filepath)
-
-
-    #获取顶点信息
-    vertex = ply['vertex']
-
-    i = 0
-    for data in vertex:
-        x, y, z = data['x'], data['y'], data['z']
-        x = float(x)
-        y = float(y)
-        z = float(z)
-        progress = (i / pointnum)*100
-        point = (x, y)
-
-
-        inside0 = path0.contains_point(point)            
-        inside1 = path1.contains_point(point)
-        inside2 = path2.contains_point(point)            
-        inside3 = path3.contains_point(point)      
-        inside4 = path4.contains_point(point)            
-        inside5 = path5.contains_point(point)
-        inside6 = path6.contains_point(point)                         
             
-        if inside0:
-            #print('GNT14')
-            hs0 = hs0 + z
-            hnum0 = hnum0 + 1
+            x = float(x)
+            y = float(y)
+            z = float(z)                        
+            
+            
+            progress = (i / pointnum)*100
+            point = (x, y)
+
+            inside0 = path0.contains_point(point)            
+            inside1 = path1.contains_point(point)
+            inside2 = path2.contains_point(point)            
+            inside3 = path3.contains_point(point)      
+            inside4 = path4.contains_point(point)            
+            inside5 = path5.contains_point(point)
+            inside6 = path6.contains_point(point)                         
+            
+            if inside0:
+                #print('GNT14')
+                hs0 = hs0 + z
+                hnum0 = hnum0 + 1
                          
-        if inside1:
-            #print('GNT10')
-            hs1 = hs1 + z
-            hnum1 = hnum1 + 1
+            if inside1:
+                #print('GNT10')
+                hs1 = hs1 + z
+                hnum1 = hnum1 + 1
                
-        if inside2:
-            #print('GNT9')            
-            hs2 = hs2 + z
-            hnum2 = hnum2 + 1
+            if inside2:
+                #print('GNT9')            
+                hs2 = hs2 + z
+                hnum2 = hnum2 + 1
                              
-        if inside3:
-            #print('Gig')            
-            hs3 = hs3 + z
-            hnum3 = hnum3 + 1
+            if inside3:
+                #print('Gig')            
+                hs3 = hs3 + z
+                hnum3 = hnum3 + 1
                             
-        if inside4:
-            #print('GNT43')            
-            hs4 = hs4 + z
-            hnum4 = hnum4 + 1
+            if inside4:
+                #print('GNT43')            
+                hs4 = hs4 + z
+                hnum4 = hnum4 + 1
                  
-        if inside5:
-            #print('GNT3')            
-            hs5 = hs5 + z
-            hnum5 = hnum5 + 1
+            if inside5:
+                #print('GNT3')            
+                hs5 = hs5 + z
+                hnum5 = hnum5 + 1
                                                                                                           
-        if inside6:
-            #print('TV1')            
-            hs6 = hs6 + z
-            hnum6 = hnum6 + 1
+            if inside6:
+                #print('TV1')            
+                hs6 = hs6 + z
+                hnum6 = hnum6 + 1
                     
                                                                                       
-        pp = str(progress)
-        print("\rProgress: " + pp + "%", end="         ")
-        i = i + 1 
+            pp = str(progress)
+            print("\rProgress: " + pp + "%", end="         ")
+            i = i + 1 
     
   
     #平均高度（苏雨）
@@ -165,7 +173,7 @@ def read_vertex_count(filepath):
 
 
 #替换下面的路径为你的PLY文件路径（苏雨）
-file_path = "/home/ysu/Miscanthus/avg_high/miscanthus_23_08_09_UTM_binary.ply"
+file_path = "/home/ysu/Miscanthus/avg_high/miscanthus_23_08_09_UTM.ply"
 
 
 
