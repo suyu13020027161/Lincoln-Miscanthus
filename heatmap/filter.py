@@ -1,3 +1,4 @@
+
 import subprocess
 import json
 
@@ -41,27 +42,17 @@ def run_pdal_pipeline(pipeline_json):
 
 if __name__ == "__main__":
     # 定义输入和输出文件路径
-    input_ply_path = '/home/ysu/Miscanthus/2D/small.ply'
-    output_ply_path = '/home/ysu/Miscanthus/2D/filter.ply'
+    input_ply_path = '/home/ysu/Miscanthus/2D/Miscanthus_23_08_09_arbitrary.ply'
+    output_ply_path = '/home/ysu/Miscanthus/2D/23_08_09_arbitrary.ply'
     voxel_size = 0.1  # 定义体素大小
     #底部，值越小越朝下（苏雨）
-    z_min_threshold = -18  
-    #顶部，值越大越朝上（苏雨）
-    z_max_threshold = -15
+    z_min_threshold = -16.5
+    #顶部，值越大越朝上 2.5（苏雨）
+    z_max_threshold = z_min_threshold + 2.5
 
     # 创建 PDAL pipeline JSON 配置
     pdal_pipeline_json = create_pdal_pipeline(input_ply_path, output_ply_path, voxel_size)
 
     # 运行 PDAL pipeline
     run_pdal_pipeline(pdal_pipeline_json)
-
-
-
-
-
-
-
-
-
-
 

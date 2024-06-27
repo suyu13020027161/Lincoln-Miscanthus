@@ -1,11 +1,14 @@
+#苏雨的二维高度热力图生成程序
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from pyntcloud import PyntCloud
 from matplotlib.colors import ListedColormap
 
+
+
 # 读取PLY文件
-ply_file_path = 'filter.ply'  # 替换为你的PLY文件路径
+ply_file_path = '23_08_09_arbitrary.ply'  # 替换为你的PLY文件路径
 cloud = PyntCloud.from_file(ply_file_path)
 
 # 获取点云数据
@@ -32,14 +35,18 @@ cmap = ListedColormap([color_map(z) for z in np.linspace(0, 1, 256)])
 # 绘制二维点云图
 plt.figure(figsize=(10, 8))
 scatter = plt.scatter(points_2d['x'], points_2d['y'], c=colors, s=1)
-plt.xlabel('X')
-plt.ylabel('Y')
-plt.title('2D Point Cloud with Z-axis Color Mapping (Green to Yellow to Red)')
+#plt.xlabel('X')
+#plt.ylabel('Y')
+#隐藏xy坐标
+plt.xticks([]) 
+plt.yticks([]) 
+
+plt.title('2D miscanthus heat map')
 
 # 创建颜色条
-norm = plt.Normalize(z_min, z_max)
+norm = plt.Normalize(0, z_max-z_min)
 cbar = plt.colorbar(plt.cm.ScalarMappable(norm=norm, cmap=cmap), ax=plt.gca(), orientation='vertical')
-cbar.set_label('Z Value')
+cbar.set_label('High Value')
 
 plt.show()
 
