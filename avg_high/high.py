@@ -165,7 +165,7 @@ def read_vertex_count(filepath):
 
 
 #替换下面的路径为你的PLY文件路径（苏雨）
-file_path = "/home/ysu/Miscanthus/avg_high/miscanthus_23_08_09_UTM_binary.ply"
+file_path = "/home/ysu/Miscanthus/avg_high/miscanthus_24_06_25_UTM_binary.ply"
 
 
 
