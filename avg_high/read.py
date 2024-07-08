@@ -1,6 +1,6 @@
 #苏雨的读取打印ply文件程序
 # 首先，定义PLY文件的路径
-ply_file_path = 'Miscanthus2.ply'
+ply_file_path = 'miscanthus_23_08_09_UTM_binary.ply'
 
 # 打开文件并读取数据
 with open(ply_file_path, 'r') as file:
