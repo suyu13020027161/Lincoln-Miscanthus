@@ -22,7 +22,7 @@ def visualize_point_cloud(file_path):
 
 if __name__ == "__main__":
     # Specify the path to the .ply file
-    file_path = "comb_UGV.ply"
+    file_path = "small.ply"
 
     # Visualize the point cloud
     visualize_point_cloud(file_path)

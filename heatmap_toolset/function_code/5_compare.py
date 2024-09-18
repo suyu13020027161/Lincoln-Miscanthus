@@ -10,6 +10,7 @@ def compare_csv(file1, file2, threshold, output_file):
     result_data = {'FirstCol': [], 'SecondCol': [], 'Difference': []}
 
     # 遍历两个DataFrame
+    i = 0
     for _, row1 in df1.iterrows():
         for _, row2 in df2.iterrows():
             # 计算第一列和第二列差的和
@@ -24,6 +25,10 @@ def compare_csv(file1, file2, threshold, output_file):
                 result_data['FirstCol'].append(row1[0])
                 result_data['SecondCol'].append(row1[1])
                 result_data['Difference'].append(third_col_diff)
+        progress = (i / len(df1))*100
+        pp = str(progress)
+        print("\rProgress: " + pp + "%", end="         ")
+        i = i + 1 
     
     # 保存结果到新的CSV文件
     result_df = pd.DataFrame(result_data)
@@ -37,12 +42,12 @@ def compare_csv(file1, file2, threshold, output_file):
 file1 = '/home/ysu/Miscanthus/toolset/data/raw_csv/24_05_28_raw_csv.csv'
 
 
-file2 = '/home/ysu/Miscanthus/toolset/data/raw_csv/24_06_25_raw_csv.csv'
+file2 = '/home/ysu/Miscanthus/toolset/data/raw_csv/new_24_09_06.csv'
 
 
 
 threshold = 1  # 设定阈值
-output_file = '/home/ysu/Miscanthus/toolset/data/comp_csv/24_06_25.csv'
+output_file = '/home/ysu/Miscanthus/toolset/data/comp_csv/new_24_09_06.csv'
 
 compare_csv(file1, file2, threshold, output_file)
 

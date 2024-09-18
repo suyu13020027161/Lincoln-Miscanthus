@@ -14,8 +14,8 @@ def compress_ply(input_file, output_file, voxel_size):
     o3d.io.write_point_cloud(output_file, voxel_down_pcd)
     print(f"Compressed PLY file saved as: {output_file}")
 
-input_ply = '/home/ysu/Miscanthus/toolset/data/ascii_utm/miscanthus_24_06_25_ascii_binary.ply'
-output_ply = '/home/ysu/Miscanthus/toolset/data/filterx/24_06_25_binary_filterx.ply'
+input_ply = '/home/ysu/Miscanthus/toolset/data/ascii_utm/new_24_06_25.ply'
+output_ply = '/home/ysu/Miscanthus/toolset/data/filterx/new_24_06_25.ply'
 voxel_size = 0.1
 
 compress_ply(input_ply, output_ply, voxel_size)
