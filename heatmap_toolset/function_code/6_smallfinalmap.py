@@ -45,7 +45,7 @@ def plot_heatmap(csv_file, square_size):
 
 
 # 使用示例
-csv_file = '/home/ysu/Miscanthus/toolset/data/comp_csv/24_06_25.csv'
-square_size = 2 # 正方形边长，可以根据需要设置
+csv_file = '/home/ysu/Miscanthus/toolset/data/comp_csv/new_24_09_06_filted.csv'
+square_size = 7 # 正方形边长，可以根据需要设置
 plot_heatmap(csv_file, square_size)
 
