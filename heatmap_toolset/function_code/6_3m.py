@@ -13,7 +13,7 @@ def plot_heatmap(csv_file, square_size):
     values = df.iloc[:, 2].values
 
     # 创建归一化颜色映射
-    norm = mcolors.Normalize(vmin=min(values), vmax=max(values))
+    norm = mcolors.Normalize(vmin=0, vmax=3)
     cmap = mcolors.LinearSegmentedColormap.from_list("", ["green", "yellow", "red"])
 
     # 设置图像和色标

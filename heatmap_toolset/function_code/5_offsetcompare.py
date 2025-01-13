@@ -42,15 +42,15 @@ def compare_csv(file1, file2, threshold, offset, output_file):
 file1 = '/home/ysu/Miscanthus/toolset/data/raw_csv/cut_Aber.csv'
 
 
-file2 = '/home/ysu/Miscanthus/toolset/data/raw_csv/20240830_Aber.csv'
+file2 = '/home/ysu/Miscanthus/toolset/data/raw_csv/20240717_Aber.csv'
 
 #不同z轴零点修复参数（苏雨）
-offset = 124.0099754 - 124.1874905
+offset = 124.0099754 - 124.0143433
 
 
 
 threshold = 1  # 设定阈值
-output_file = '/home/ysu/Miscanthus/toolset/data/comp_csv/20240830_Aber.csv'
+output_file = '/home/ysu/Miscanthus/toolset/data/comp_csv/20240717_Aber.csv'
 
 compare_csv(file1, file2, threshold, offset, output_file)
 
