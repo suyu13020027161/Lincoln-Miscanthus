@@ -18,15 +18,15 @@ def create_convex_polygon(points):
 
 def filter_points_in_polygon(ply_cloud, polygon):
     points = np.asarray(ply_cloud.points)
-    colors = np.asarray(ply_cloud.colors)
+    #colors = np.asarray(ply_cloud.colors)
     
     filtered_indices = [i for i in range(points.shape[0]) if polygon.contains(Point(points[i][0], points[i][1]))]
     filtered_points = points[filtered_indices]
-    filtered_colors = colors[filtered_indices]
+    #filtered_colors = colors[filtered_indices]
     
     filtered_ply_cloud = o3d.geometry.PointCloud()
     filtered_ply_cloud.points = o3d.utility.Vector3dVector(filtered_points)
-    filtered_ply_cloud.colors = o3d.utility.Vector3dVector(filtered_colors)
+    #filtered_ply_cloud.colors = o3d.utility.Vector3dVector(filtered_colors)
     
     return filtered_ply_cloud
 

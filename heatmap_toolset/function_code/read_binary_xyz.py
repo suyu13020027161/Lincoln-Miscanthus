@@ -2,7 +2,7 @@
 from plyfile import PlyData
 
 # 读取PLY文件
-filepath = 'cut_Aber.ply'
+filepath = '20240717_Aber.ply'
 ply = PlyData.read(filepath)
 
 # 获取顶点信息
@@ -27,8 +27,8 @@ with open(filepath, 'rb') as file:
 i = 0
 # 打印每个点的XYZ坐标
 for data in vertex:   
-    x, y, z, r, g, b = data['x'], data['y'], data['z'], data['red'], data['green'], data['blue']
-    print(f"X: {x}, Y: {y}, Z: {z}, R: {r}, G: {g}, B: {b}")
+    x, y, z = data['x'], data['y'], data['z']
+    print(f"X: {x}, Y: {y}, Z: {z}")
     x = float(x)
     progress = (i / pointnum)*100
     pp = str(progress)
