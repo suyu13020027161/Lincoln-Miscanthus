@@ -1,7 +1,7 @@
 #苏雨的比较csv文件的处理中间程序，计算两个网格csv文件的相同位置网格高度差，输出为新csv文件
 import pandas as pd
 
-def compare_csv(file1, file2, threshold, output_file):
+def compare_csv(file1, file2, threshold, offset, output_file):
     # 加载CSV文件，跳过第一行
     df1 = pd.read_csv(file1, skiprows=1, header=None)
     df2 = pd.read_csv(file2, skiprows=1, header=None)
@@ -19,7 +19,7 @@ def compare_csv(file1, file2, threshold, output_file):
             # 检查差的和是否在阈值内
             if diff_sum <= threshold:
                 # 计算第三列的差
-                third_col_diff = abs(row1[2] - row2[2])
+                third_col_diff = abs(row1[2] - row2[2] - offset)
                 
                 # 存储结果
                 result_data['FirstCol'].append(row1[0])
@@ -39,15 +39,18 @@ def compare_csv(file1, file2, threshold, output_file):
 
 
 #基准不要改（苏雨）
-file1 = '/home/ysu/Miscanthus/toolset/data/raw_csv/20240515_Aber.csv'
+file1 = '/home/ysu/Miscanthus/toolset/data/raw_csv/cut_Aber.csv'
 
 
-file2 = '/home/ysu/Miscanthus/toolset/data/raw_csv/20241023_Aber.csv'
+file2 = '/home/ysu/Miscanthus/toolset/data/raw_csv/20240830_Aber.csv'
+
+#不同z轴零点修复参数（苏雨）
+offset = 124.0099754 - 124.1874905
 
 
 
 threshold = 1  # 设定阈值
-output_file = '/home/ysu/Miscanthus/toolset/data/comp_csv/20241023_Aber.csv'
+output_file = '/home/ysu/Miscanthus/toolset/data/comp_csv/20240830_Aber.csv'
 
-compare_csv(file1, file2, threshold, output_file)
+compare_csv(file1, file2, threshold, offset, output_file)
 

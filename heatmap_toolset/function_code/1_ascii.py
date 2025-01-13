@@ -46,8 +46,8 @@ end_header
             i = i + 1
 
 
-file_path = '/home/ysu/Miscanthus/toolset/data/rawdata_utm/new_24_09_06.ply'
-output = '/home/ysu/Miscanthus/toolset/data/ascii_utm/new_24_09_06.ply'
+file_path = '/home/ysu/Miscanthus/toolset/data/rawdata_utm/20240717_Aber.ply'
+output = '/home/ysu/Miscanthus/toolset/data/ascii_utm/20240717_Aber.ply'
 pointnum = read_vertex_count(file_path)
 write_ply(pointnum, file_path, output)
 
