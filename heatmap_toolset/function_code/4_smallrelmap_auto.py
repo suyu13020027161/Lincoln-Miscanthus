@@ -68,9 +68,9 @@ def plot_and_save_filtered_height_distribution(file_path, grid_size, output_dir)
     plt.show()
 
 # 路径设置
-input_dir = '/home/ysu/Miscanthus/toolset/data/filterz/Aber_filted/20241023_Aber'  # 输入文件夹路径
-output_dir = '/home/ysu/Miscanthus/toolset/data/raw_csv/Aber_filted/20241023_Aber'  # 输出CSV文件夹路径
-outputimg_dir = '/home/ysu/Miscanthus/toolset/heatmap_toolset/output_data/rawgrid_map/Aber_filted/20241023_Aber'  # 输出图像文件夹路径
+input_dir = '/home/ysu/Miscanthus/toolset/data/filterz/Aber_filted/20240717_Aber'  # 输入文件夹路径
+output_dir = '/home/ysu/Miscanthus/toolset/data/raw_csv/Aber_filted/20240717_Aber'  # 输出CSV文件夹路径
+outputimg_dir = '/home/ysu/Miscanthus/toolset/heatmap_toolset/output_data/rawgrid_map/Aber_filted/20240717_Aber'  # 输出图像文件夹路径
 
 grid_size = 0.25  # 网格大小
 

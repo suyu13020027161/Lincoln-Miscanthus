@@ -56,9 +56,9 @@ def plot_and_save_filtered_height_distribution(file_path, grid_size, csv_path):
     plt.show()
 
 # 使用示例
-file_path = '/home/ysu/Miscanthus/toolset/data/filterz/Aber_filted/20241023_Aber/20241023_Aber_GNT3 r1c5.ply'
+file_path = '/home/ysu/Miscanthus/toolset/data/highresolution/raw/Miscanthus May 28th 2024 100pc cropped.ply'
 grid_size = 0.25  # 网格大小，单位与UTM坐标相同
-csv_path = '/home/ysu/Miscanthus/toolset/data/raw_csv/20241023_Aber_GNT3 r1c5.csv'
+csv_path = '/home/ysu/Miscanthus/toolset/data/highresolution/raw_csv/Miscanthus May 28th 2024 100pc cropped.csv'
 plot_and_save_filtered_height_distribution(file_path, grid_size, csv_path)
 
 

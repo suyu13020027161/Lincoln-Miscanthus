@@ -18,8 +18,8 @@ def filter_and_save_ply(input_file, output_file, z_min, z_max):
     print(f"Filtered PLY file saved as: {output_file}")
 
 
-input_ply = '/home/ysu/Miscanthus/toolset/data/filterx/24_11_07.ply'
-output_ply = '/home/ysu/Miscanthus/toolset/data/filterz/24_11_07.ply'
+input_ply = '/home/ysu/Miscanthus/toolset/data/highresolution/raw/Miscanthus May 28th 2024 100pc cropped.ply'
+output_ply = '/home/ysu/Miscanthus/toolset/data/highresolution/filterz/Miscanthus May 28th 2024 100pc cropped.ply'
 
 #只要是2024年的文件滤波参数都一样，2023年的地面低3米（苏雨）
 z_min = 58  

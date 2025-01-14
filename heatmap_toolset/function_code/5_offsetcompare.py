@@ -20,6 +20,7 @@ def compare_csv(file1, file2, threshold, offset, output_file):
             if diff_sum <= threshold:
                 # 计算第三列的差
                 third_col_diff = abs(row1[2] - row2[2] - offset)
+                #print(third_col_diff)
                 
                 # 存储结果
                 result_data['FirstCol'].append(row1[0])
@@ -42,15 +43,15 @@ def compare_csv(file1, file2, threshold, offset, output_file):
 file1 = '/home/ysu/Miscanthus/toolset/data/raw_csv/cut_Aber.csv'
 
 
-file2 = '/home/ysu/Miscanthus/toolset/data/raw_csv/20240717_Aber.csv'
+file2 = '/home/ysu/Miscanthus/toolset/data/raw_csv/20240515_Aber.csv'
 
 #不同z轴零点修复参数（苏雨）
-offset = 124.0099754 - 124.0143433
+offset = 124.0099754 - 124.0099754
 
 
 
 threshold = 1  # 设定阈值
-output_file = '/home/ysu/Miscanthus/toolset/data/comp_csv/20240717_Aber.csv'
+output_file = '/home/ysu/Miscanthus/toolset/data/comp_csv/20240515_Aber.csv'
 
 compare_csv(file1, file2, threshold, offset, output_file)
 
