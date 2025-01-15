@@ -20,8 +20,9 @@ def plot_and_save_filtered_height_distribution(file_path, grid_size, csv_path):
     # 初始化Z值矩阵
     z_values = np.full((len(y_range)-1, len(x_range)-1), np.nan)
 
+    prog = 0
     # 计算每个网格内点的平均高度
-    for i in range(len(x_range) - 1):
+    for i in range(len(x_range) - 1):                       
         for j in range(len(y_range) - 1):
             # 找到当前网格内的所有点
             mask = (points[:, 0] >= x_range[i]) & (points[:, 0] < x_range[i + 1]) & \
@@ -32,6 +33,10 @@ def plot_and_save_filtered_height_distribution(file_path, grid_size, csv_path):
                 average_height = np.mean(grid_points[:, 2])
                 if average_height > 0:
                     z_values[j, i] = average_height
+            progress = (prog / (len(x_range)*len(y_range)))*100
+            pp = str(progress)
+            print("\rProgress: " + pp + "%", end="         ")   
+            prog = prog + 1          
 
     # 将有数据的网格保存到CSV文件
     grid_data = {'x_center': [], 'y_center': [], 'average_height': []}
@@ -57,7 +62,7 @@ def plot_and_save_filtered_height_distribution(file_path, grid_size, csv_path):
 
 # 使用示例
 file_path = '/home/ysu/Miscanthus/toolset/data/highresolution/raw/Miscanthus May 28th 2024 100pc cropped.ply'
-grid_size = 0.25  # 网格大小，单位与UTM坐标相同
+grid_size = 0.1  # 网格大小，单位与UTM坐标相同
 csv_path = '/home/ysu/Miscanthus/toolset/data/highresolution/raw_csv/Miscanthus May 28th 2024 100pc cropped.csv'
 plot_and_save_filtered_height_distribution(file_path, grid_size, csv_path)
 
